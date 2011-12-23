@@ -1,0 +1,134 @@
+\documentclass[twoside,openright,titlepage,fleqn,pointlessnumbers,headinclude,%1headlines,%
+12pt,a4paper,BCOR5mm,footinclude,cleardoubleempty,abstractoff]{scrreprt}
+
+
+\listfiles
+
+\newcommand{\myTitle}{A nice latex paper template}
+\newcommand{\mySubtitle}{Insert complicated sounding subtitle here}
+\newcommand{\myDegree}{Your degree\xspace}
+\newcommand{\myName}{Your name\xspace}
+\newcommand{\myProf}{You Prof\xspace}
+\newcommand{\myFaculty}{Faculty\xspace}
+\newcommand{\myDepartment}{Put data here\xspace}
+\newcommand{\myUni}{\protect{Your school}\xspace}
+\newcommand{\myLocation}{You location\xspace}
+\newcommand{\myTime}{July 2010\xspace}
+% \newcommand{\myVersion}{Version \xspace}
+
+\usepackage[utf8]{inputenc} 
+\usepackage[ngerman,american]{babel}           
+\usepackage[square,numbers]{natbib} 
+\usepackage[fleqn]{amsmath} % math environments and more by the AMS 
+
+\usepackage{classicthesis-ldpkg}
+\usepackage{url}
+\usepackage{pdfpages}
+
+\usepackage[eulerchapternumbers,listings,%pdfspacing,%
+            subfig,beramono,eulermath,parts]{classicthesis}
+
+\newlength{\abcd} % for ab..z string length calculation
+\newcommand{\myfloatalign}{\centering} % how all the floats will be aligned
+\setlength{\extrarowheight}{3pt} % increase table row height
+
+\captionsetup{format=hang,font=small}
+
+\lstset{language=[LaTeX]Tex,%C++,
+    keywordstyle=\color{RoyalBlue},%\bfseries,
+    basicstyle=\small\ttfamily,
+    %identifierstyle=\color{NavyBlue},
+    commentstyle=\color{Green}\ttfamily,
+    stringstyle=\rmfamily,
+    numbers=none,%left,%
+    numberstyle=\scriptsize,%\tiny
+    stepnumber=5,
+    numbersep=8pt,
+    showstringspaces=false,
+    breaklines=true,
+    frameround=ftff,
+    frame=single,
+    captionpos = b
+    %frame=L
+}
+
+% \lstdefinelanguage{spring}
+% 	{morekeywords={name, value, ref},
+% 	3,
+% 	sensitive=false,
+% 	morecomment=[s]{<!--}{-->},
+% 	morestring="`[b]"',
+% }
+
+\hypersetup{%
+    colorlinks=true, linktocpage=true, pdfstartpage=3, pdfstartview=FitV,%
+    % uncomment the following line if you want to have black links (e.g., for printing)
+    %colorlinks=false, linktocpage=false, pdfborder={0 0 0}, pdfstartpage=3, pdfstartview=FitV,% 
+    breaklinks=true, pdfpagemode=UseNone, pageanchor=true, pdfpagemode=UseOutlines,%
+    plainpages=false, bookmarksnumbered, bookmarksopen=true, bookmarksopenlevel=1,%
+    hypertexnames=true, pdfhighlight=/O,%hyperfootnotes=true,%nesting=true,%frenchlinks,%
+    urlcolor=webbrown, linkcolor=RoyalBlue, citecolor=webgreen, %pagecolor=RoyalBlue,%
+    %urlcolor=Black, linkcolor=Black, citecolor=Black, %pagecolor=Black,%
+    pdftitle={\myTitle},%
+    pdfauthor={\textcopyright\ \myName, \myUni, \myFaculty},%
+    pdfsubject={},%
+    pdfkeywords={},%
+    pdfcreator={pdfLaTeX},%
+    pdfproducer={LaTeX with hyperref and classicthesis}%
+}
+
+\oddsidemargin=1cm
+\evensidemargin=1cm
+
+\begin{document}
+\frenchspacing
+\raggedbottom
+\selectlanguage{ngerman} % american ngerman
+%\renewcommand*{\bibname}{new name}
+%\setbibpreamble{}
+\pagenumbering{roman}
+\pagestyle{plain}
+
+% \include{pages/dirtyTitlepage}
+\include{pages/titlepage}
+\include{pages/titleback}
+% \include{pages/declaration}
+% \cleardoublepage\include{pages/dedication}
+\cleardoublepage\include{pages/abstract}
+% \cleardoublepage\include{pages/publication}
+% \cleardoublepage\include{pages/acknowledgments}
+
+\pagestyle{scrheadings}
+\cleardoublepage\include{pages/contents}
+
+\pagenumbering{arabic}
+% use \cleardoublepage here to avoid problems with pdfbookmark
+\cleardoublepage\myPart{Einleitung}
+\include{chapters/ch_00}
+\include{chapters/ch_01}
+\cleardoublepage\myPart{Konzeption und Realisierung}
+\include{chapters/ch_02}
+\include{chapters/ch_03}
+\include{chapters/ch_04}
+\cleardoublepage\myPart{Gesamtkonzept}
+\include{chapters/ch_05}
+\include{chapters/ch_06}
+
+\appendix
+\cleardoublepage\myPart{Anhang}
+\include{chapters/ch_a}
+
+\cleardoublepage
+\manualmark
+\markboth{\spacedlowsmallcaps{\bibname}}{\spacedlowsmallcaps{\bibname}} % work-around to have small caps also
+%\phantomsection 
+\refstepcounter{dummy}
+\addtocontents{toc}{\protect\vspace{\beforebibskip}} % to have the bib a bit from the rest in the toc
+\addcontentsline{toc}{chapter}{\tocEntry{\bibname}}
+\bibliographystyle{alphadin}
+\label{app:bibliography}
+\bibliography{bibliography}
+
+% \cleardoublepage\include{pages/colophon}
+
+\end{document}

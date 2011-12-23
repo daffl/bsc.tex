@@ -1,0 +1,103 @@
+%*******************************************************
+% Table of Contents
+%*******************************************************
+%\phantomsection
+\refstepcounter{dummy}
+\pdfbookmark[1]{\contentsname}{tableofcontents}
+\setcounter{tocdepth}{2} % <-- 2 includes up to subsections in the ToC
+\setcounter{secnumdepth}{3} % <-- 3 numbers up to subsubsections
+\manualmark
+\markboth{\spacedlowsmallcaps{\contentsname}}{\spacedlowsmallcaps{\contentsname}}
+\tableofcontents 
+\automark[section]{chapter}
+\renewcommand{\chaptermark}[1]{\markboth{\spacedlowsmallcaps{#1}}{\spacedlowsmallcaps{#1}}}
+\renewcommand{\sectionmark}[1]{\markright{\thesection\enspace\spacedlowsmallcaps{#1}}}%*******************************************************
+% List of Figures and of the Tables
+%*******************************************************
+\clearpage
+
+\begingroup 
+    \let\clearpage\relax
+    \let\cleardoublepage\relax
+    \let\cleardoublepage\relax
+    %*******************************************************
+    % List of Figures
+    %*******************************************************    
+    %\phantomsection 
+    \refstepcounter{dummy}
+    %\addcontentsline{toc}{chapter}{\listfigurename}
+    \pdfbookmark[1]{\listfigurename}{lof}
+    \listoffigures
+
+    \vspace*{8ex}
+
+    %*******************************************************
+    % List of Tables
+    %*******************************************************
+    %\phantomsection 
+    \refstepcounter{dummy}
+    %\addcontentsline{toc}{chapter}{\listtablename}
+    \pdfbookmark[1]{\listtablename}{lot}
+    \listoftables
+        
+    \vspace*{8ex}
+%   \newpage
+    
+    %*******************************************************
+    % List of Listings
+    %*******************************************************      
+	  %\phantomsection 
+    \refstepcounter{dummy}
+    %\addcontentsline{toc}{chapter}{\lstlistlistingname}
+    \pdfbookmark[1]{\lstlistlistingname}{lol}
+    \lstlistoflistings 
+
+    \vspace*{8ex}
+       
+    %*******************************************************
+    % Acronyms
+    %*******************************************************
+    %\phantomsection 
+    \refstepcounter{dummy}
+    \pdfbookmark[1]{Acronyms}{acronyms}
+    \markboth{\spacedlowsmallcaps{Acronyms}}{\spacedlowsmallcaps{Acronyms}}
+    \chapter*{Acronyme}
+    \begin{acronym}
+        \acro{API}{Application Programmers Interface}
+        \acro{AOP}{Aspect Oriented Programming}
+        \acro{CRUD}{Create, Read, Update, Delete}
+        \acro{DAO}{Data Access Object}
+        \acro{DBMS}{Datenbankmanagementsystem}
+        \acro{GORM}{Grails ORM}
+        \acro{HQL}{Hibernate Query Language}
+        \acro{HTML}{Hypertext Markup Language}
+        \acro{HTTP}{Hypertext Transport Protocol}
+        \acro{IDL}{Interface Description Language}
+        \acro{IOC}{Inversion Of Control}
+        \acro{J2EE}{Java Enterprise Edition}
+        \acro{JPA}{Java Persistence API}
+        \acro{JRE}{Java Runtime Environment}
+        \acro{JSON}{JavaScript Object Notation}
+        \acro{JSR}{Java Specification Requst}
+        \acro{JVM}{Java Virtual Machine}
+        \acro{MVC}{Model View Controller}
+        \acro{ORM}{Object-Relational Mapping}
+        \acro{POJO}{Plain Old Java Object}
+        \acro{RDBMS}{Relational Database Management System}
+        \acro{REST}{Representational State Transfer}
+        \acro{RIA}{Rich Internet Application}
+        \acro{RMI}{Remote Method Invocation}
+        \acro{RPC}{Remote Procedure Call}
+        \acro{SGML}{Standard Generalized Markup Language}
+        \acro{SGML}{Standardized General Markup Language}
+        \acro{SLF4J}{Simple Logging Framework For Java}
+        \acro{SQL}{Structured Query Language}
+        \acro{UML}{Unified Modeling Language}
+        \acro{URI}{Uniform Resource Identifier}
+        \acro{URL}{Uniform Resource Locator}
+        \acro{WSDL}{Werbservice Description Language}
+        \acro{XML}{Extended Markup Language}
+    \end{acronym}
+\endgroup
+
+\cleardoublepage

@@ -1,0 +1,162 @@
+\myChapter{Ausblick}\label{ch:final}
+
+\section{Entwicklungs- und Testumgebung}
+Die Entwicklung erfolgte mit \emph{Eclipse}\footnote{\url{http://eclipse.org}}
+als Entwicklungsumgebung und \emph{Ubuntu
+Linux}\footnote{\url{http://www.ubuntu.com}} 9.10 (64 bit Desktop Edition) als
+Betriebssystem. Für die Verwaltung des Projekts wurde das Online
+Projektmanagementsystem \emph{Redmine}\footnote{\url{http://www.redmine.org}} und
+das Versionsverwaltungssystem
+\emph{Subversion}\footnote{\url{http://subversion.apache.org}} auf einem
+virtuellen Server in einem Frankfurter Rechenzentrum installiert. Dieses System
+soll auch für die Weiterentwicklung und eventuelle Veröffentlichungen dienen. In
+Eclipse selbst wurden verschiedene Plugins verwendet:
+\begin{description}
+  \item[Spring IDE] Spring IDE ist ein Eclipse Plugin, das die Arbeit mit dem
+  Spring Framework unterstützt. Dazu gehören automatische Vervollständigung von
+  Klassennamen und Eigenschaften in einer Context Definition sowie weitere
+  Möglichkeiten zur Verwaltung des Context. Spring IDE wurde inzwischen in die
+  Springsource Tool Suite
+  \footnote{\url{http://www.springsource.com/products/sts}} integriert.
+  \item[Groovy Eclipse Plugin] Für die Entwicklung in Groovy wurde das Groovy
+  Eclipse Plugin\footnote{\url{http://groovy.codehaus.org/Eclipse+Plugin}}
+  verwendet. Dadurch kann mit Groovy oder Java/Groovy Projekten ähnlich
+  gearbeitet werden, wie schon aus der Java Entwicklung in Eclipse gewohnt.
+  \item[IvyDE] Ivy bietet die Möglichkeit, verschiedene Versionen von
+  Bibliotheken und deren Abhängigkeiten von öffentlichen und nichtöffentlichen
+  Repository Servern\footnote{Bekanntester öffentlich verfügbarer Server ist
+  \url{http://mvnrepository.com}} zu beziehen. Dafür wird in einem Eclipse
+  Projekt eine \ac{XML} Konfigurationsdatei angelegt, in der alle
+  Abhängigkeiten dieses Projekts definiert werden. Ivy bezieht nun diese
+  Bibliotheken von den Repository Servern und macht sie in einem Projekt
+  verfügbar. Ein weiterer Vorteil dieser Vorgehensweise ist, dass es
+  nicht mehr notwendig ist, die verwendeten Java Bibliotheken mit dem Projekt in
+  ein Versionskontrollsystem einchecken zu müssen.
+  \item[Redmine Mylyn Connector] Der Redmine Mylyn
+  Connector\footnote{\url{http://sourceforge.net/projects/redmin-mylyncon/}}
+  verbindet die unter Eclipse verfügbare Aufgabenverwaltung Mylyn mit dem
+  Projektmanagementsystem Redmine. Dadurch kann die Verwaltung von Aufgaben und
+  Fehlerberichten in einem Projekt zum Großteil direkt in Eclipse vorgenommen
+  werden.
+  \item[Subclipse] Subclipse\footnote{\url{http://subclipse.tigris.org}} ist ein
+  Eclipse Plugin für die Versionsverwaltung mit Subversion.
+\end{description}
+
+Für die Tests einzelner Implementierungen wurden umfangreiche Unit Tests unter
+Verwendung von \emph{JUnit}\footnote{\url{http://www.junit.org}} erstellt. Auch
+hierfür existiert eine Unterstützung des Spring Frameworks. Für Tests über ein
+Netzwerk wurde auf dem lokalen System mit Hilfe der Virtualisierungslösung
+\emph{Virtualbox}\footnote{\url{http://www.virtualbox.org}} ein
+\emph{Debian}\footnote{\url{http://www.debian.org}} 5.0 System installiert. In
+der virtuellen Maschine wurde die Verbindung zu dem in Abschnitt
+\ref{subsec:xmlrpc} vorgestellten XML-RPC Protocol Handler mit einer PHP
+Implementierung des XML-RPC
+Protokolls\footnote{\url{http://phpxmlrpc.sourceforge.net/}} getestet. Zum Testen
+des \ac{REST} Protocol Handlers aus Abschnitt \ref{subsec:rest} wurde die Java
+Anwendung \emph{Rest
+Client}\footnote{\url{http://code.google.com/p/rest-client/}} verwendet. Da bei
+diesem Testaufbau beide Teilnehmer auf dem gleichen physikalischen System
+arbeiteten, waren keine aussagekräftigen Lasttests möglich.
+
+\section{Erweiterungsm\"oglichkeiten} 
+Auch wenn die Ziele dieser Arbeit eine Grundlage für einen Service Layer zu
+erstellen und durch die Service Engine einen protokollunabhängigen
+Ausführungsmechanismus für entfernte Methodenaufrufe zu implementieren, erreicht
+wurden, lässt der modulare Aufbau des Gesamtsystems viele
+Erweiterungsmöglichkeiten zu.
+
+Durch die Referenzimplementierungen der Protocol Handler für \ac{RMI}, XML-RPC
+und \ac{REST} werden zwar bereits einige häufig verwendete Protokolle
+unterstützt, aber vor allem in diesem Bereich besteht einiges Potential für
+Erweiterungen. Nachdem in der Service Engine die Darstellung von
+zustandsgebundenen und zustandslosen synchronen \ac{RPC} Aufrufen abstrahiert
+wurde, wäre der nächste Schritt eine allgemeine Unterstützung für asynchrone
+entfernte Methodenaufrufe zu implementieren. Dadurch ist dann beispielsweise
+die Unterstützung des Webservice Protokolls SOAP in der Version 1.2 möglich.
+
+Auch die Ausarbeitung von Details in den vorhandenen Implementierungen ist an
+manchen Stellen möglich. So ist es geplant die in Kapitel \ref{chap:servicelayer}
+vorgestellten Service Implementierungen zu einem Framework zu erweitern, das den
+Aufbau des Service Layer einer Anwendung vorgibt. Dazu gehört auch eine bessere
+Integration der Services untereinander, da diese momentan noch manuell in der
+Spring Context Definition vorgenommen werden muss. Ein weiterer Punkt ist die
+Optimierung der \ac{HTTP} Umsetzung (entsprechend der Spezifikation in
+\cite{rfc2616}) des \ac{REST} Protokoll Handler und die Fertigstellung der
+Presentation Implementierung für \ac{HTML}.
+
+\section{Fazit}
+Die Erstellung von modernen Unternehmens- und Webanwendungen ist ein komplexes
+Themengebiet, das einem ständigen Wandel unterzogen ist. Diese Arbeit und die
+vorgestellten Implementierungen sollen dazu beitragen diese Komplexität
+an einigen Stellen etwas zu reduzieren und zu strukturieren.
+
+Dafür wurden im Einleitungskapitel die Definition und die Herausforderungen von
+modernen Unternehmensanwendungen herausgearbeitet und die Aufgabenstellung dieser
+Arbeit sowie die Herangehensweise anhand der verwendeten Schichtenarchitektur
+vorgestellt. 
+
+Aufgabe war es zum einen das Konzept des Service Layer zu evaluieren
+und anhand der Eigenschaften von Unternehmensanwendungen eine Reihe von Services
+zu implementieren, die einen Teil dieser Aufgabe übernehmen. Diese
+Implementierungen können somit in verschiedenen Anwendungen die Grundlage für
+einen Service Layer bilden. Zum anderen sollte ein zentraler
+Ausführungsmechanismus entwickelt werden, der die Grundlage dafür bietet, die
+Methoden dieses Service Layer über entfernte Methodenaufrufe zur Verfügung zu
+stellen. Darauf aufbauend sollten anschließend Reihe von \ac{RPC} Protokollen für
+entfernte Methodenaufrufe evaluiert werden und die jeweiligen Implementierungen,
+die diesen Ausführungsmechanismus verwenden, realisiert werden.
+
+Ein Grundlagenkapitel erstellte einen Überblick über die verwendeten
+Technologien, Konzepte und Begriffe, die für das weitere Verständnis wichtig
+waren. Ein Schwerpunkt lag dabei auf der Java Plattform und den dort möglichen
+Programmiersprachen sowie auf verschiedenen Java Technologien, unter anderem dem
+Spring Framework. Weiterhin wurde das Konzept des entfernten Methodenaufrufs
+(\ac{RPC}) sowie verschiedene Möglichkeiten für den Datenaustausch behandelt.
+
+Im weiteren Verlauf wurde der Datasource Layer, der dazu dient die Verbindung zu
+anderen Anwendungen herzustellen, als unterste Schicht der Architektur
+vorgestellt. Darauf aufbauend wurden die verschiedenen Komponenten des Domain
+Layer näher betrachtet, die bereits einen Teil der Anwendungslogik übernehmen.
+Für die weitere Implementierung von Anwendungslogik wurde anschließend das
+Konzept des Service Layer eingeführt, der eine gemeinsame Schnittstelle einer
+Anwendung an einer zentralen Stelle definiert. In diesem Zusammenhang wurden
+dann einige Service Implementierungen vorgestellt, die aufgrund der allgemeinen
+Anforderungen von Unternehmensanwendungen in verschiedenen
+Anwendungen zum Einsatz kommen können.
+
+Das nachfolgende Kapitel beschäftigte sich mit dem Remoting Layer, der dazu dient
+den Service Layer einer Anwendung über verschiedene \ac{RPC} Protokolle
+anzubinden. Hier wurde die Implementierung der Service Engine vorgestellt, die
+die Aufgabe übernimmt die abstrahierte Form eines Methodenaufrufs zu verarbeiten
+und auf einem entsprechenden Service auszuführen. Durch diese allgemeine Form
+eines Methodenaufrufs ist es nun möglich verschiedene \ac{RPC} Protokolle über
+den zentralen Ausführungsmechanismus der Service Engine anzubinden. Dazu wurden
+in den folgenden Abschnitten Referenzimplementierungen für \ac{RMI}, XML-RPC und
+\ac{REST} behandelt. Weiterhin wurden dann im Rahmen des Gesamtkonzeptes
+verschiedene Anwendungsfälle gezeigt, wie diese Implementierungen genutzt werden
+können.
+
+Zusammenfassend lässt sich sagen, dass beide Teile der Aufgabenstellung
+erfolgreich umgesetzt wurden. Zum einen wurde eine Reihe von Services
+hergeleitet und implementiert, die verschiedene häufige Anforderungen bei der Entwicklung
+einer Unternehmensanwendung in einer generischen Form umsetzen und deshalb leicht
+wiederverwendbar sind. Der Vorteil dieser Implementierungen und der Verwendung
+eines Service Layer ist, dass sie unabhängig von der Präsentationsschicht einer
+Anwendung arbeiten. Dies steht im Unterschied zu einem Großteil der bisher
+verfügbaren Frameworks, da diese in den meisten Fällen mit einer konkreten
+Präsentationsschicht arbeiten\footnote{Beispielsweise Webframeworks, GUI
+Frameworks etc.}.
+
+Zum anderen wurde eine Anwendungsschicht in Form der Service Engine entwickelt,
+die eine zentrale Ausführungsumgebung für Anfragen von verschiedenen \ac{RPC}
+Protokollen auf den Services des Service Layer bietet. Die Service Engine
+verwendet dabei eine allgemeine Darstellung eines \ac{RPC} und implementiert
+selbst kein konkretes Protokoll. Diese allgemeine Darstellung wird dann von der
+übergeordneten Schicht in Form verschiedener Protocol Handler, die ein konkretes
+\ac{RPC} Protokoll implementieren, verwendet. An den Referenzimplementierungen für
+\ac{RMI}, XML-RPC und \ac{REST} wurde nun gezeigt, dass auch Protokolle mit
+unterschiedlichen Eigenschaften und Voraussetzungen an die Service Engine
+angebunden werden können. Auch hier existierten bisher nur Bibliotheken,
+die ein konkretes \ac{RPC} Protokoll implementieren und auch direkt die Aufgabe
+der Ausführung übernehmen, was die Unterstützung mehrerer \ac{RPC}
+Protokolle deutlich komplizierter gestaltete.

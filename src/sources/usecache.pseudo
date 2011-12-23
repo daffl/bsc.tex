@@ -1,0 +1,15 @@
+function getData()
+begin
+	if cacheService.exists(data_key) then
+		data = cacheService.get(data_key)
+	else
+		data = getFromDataSourceLayer()
+		cacheService.put(data_key, data)
+	return data
+end
+
+function updateData(data)
+begin
+	updateInDataSourceLayer(data)
+	cacheService.remove(data_key)
+end

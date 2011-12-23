@@ -1,0 +1,11 @@
+<beans>
+	<bean name="i18nService" class="org.feathry.service.i18n.GormI18nService">
+	    <!-- ... -->
+	</bean>
+	
+	<bean class="org.springframework.remoting.rmi.RmiServiceExporter">
+	    <property name="serviceName" value="I18nService"/>
+	    <property name="service" ref="i18nService"/>
+	    <property name="serviceInterface" value="org.feathry.service.i18n.I18nService"/>
+	</bean>
+</beans>

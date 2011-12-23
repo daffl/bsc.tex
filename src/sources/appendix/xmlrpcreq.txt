@@ -1,0 +1,16 @@
+POST /xml-rpc HTTP/1.0
+User-Agent: Remote Application X
+Host: example.com
+Content-Type: text/xml
+Content-length: 224
+
+<?xml version="1.0"?>
+<methodCall>
+	<methodName>userService.login</methodName>
+	<params> 
+		<param> 
+			<value><string>User2</string></value> 
+			<value><string>secret2</string></value>
+		</param> 
+	</params>
+</methodCall> 

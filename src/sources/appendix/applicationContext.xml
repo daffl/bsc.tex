@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans" 
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans 
+		http://www.springframework.org/schema/beans/spring-beans-3.0.xsd">
+
+	<bean name="userService" class="com.example.SimpleUserService">
+		<property name="users">
+			<list>
+				<ref bean="user1" />
+				<ref bean="user2" />
+			</list>
+		</property>
+	</bean>
+	
+	<bean name="user1" class="com.example.User">
+		<property name="username" value="User1" />
+		<property name="plainPassword" value="secret1" />
+	</bean>
+	
+	<bean name="user2" class="com.example.User">
+		<property name="username" value="User2" />
+		<property name="plainPassword" value="secret2" />
+	</bean>	
+</beans>

@@ -1,0 +1,10 @@
+<beans>
+	<bean name="anotherBean" class="example.AnotherBean">
+	    <property name="i18nService" ref="i18nService" />
+	</bean>
+	
+	<bean id="i18nService" class="org.springframework.remoting.rmi.RmiProxyFactoryBean">
+	    <property name="serviceUrl" value="rmi://hostname:1099/I18nService" />
+	    <property name="serviceInterface" value="org.feathry.service.i18n.I18nService" />
+	</bean>
+</beans>

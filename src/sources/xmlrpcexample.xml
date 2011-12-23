@@ -1,0 +1,36 @@
+<xmlrpc>
+<methodCall>
+    <methodName>
+        BooksService.getBook
+    </methodName>
+    <params>
+        <param>
+            <value>
+                <string>
+                    3548234100
+                </string>
+            </value>
+        </param>
+    </params>
+</methodCall>
+
+<methodResponse>
+    <params>
+        <param>
+            <struct>
+                <member>
+                    <name>
+                        isbn
+                    </name>
+                    <value>
+                        <string>
+                            3548234100
+                        </string>
+                    </value>
+                </member>
+                ...
+            </struct>
+        </param>
+    </params>
+</methodResponse>
+</xmlrpc>

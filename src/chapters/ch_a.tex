@@ -1,0 +1,64 @@
+\myChapter{Codebeispiele}\label{chap:appendix}
+
+\section{Spring Framework}\label{app:spring}
+Die folgenden Codebeispiele sollen die Verwendung des Dependency Injection
+Container des Spring Frameworks zeigen. Zu diesem Zweck soll das bisher
+verwendete User JavaBean als Grundlage verwendet werden:
+
+\lstinputlisting[caption=User Domain Objekt (User.java), label=lst:appjavabean]
+{sources/appendix/javabeanexample.java}
+
+Anschließend wird ein Service Interface für dieses User Domain Objekt erstellt,
+das die einfache Authentifizierung eines Benutzers anhang von Benutzername und
+Passwort ermöglicht.
+
+\lstset{language=Java}
+\lstinputlisting[caption=Beispiel eines Service Interface (UserService.java),
+label=lst:a_userservice] {sources/appendix/UserService.java}
+
+Dieses Interface wird nun in einer sehr einfachen Form implementiert. Die
+Implementierung erwartet eine Liste von Benutzer Objekten und überprüft bei
+einem Aufruf der login() Methode, ob die übergebenen Authentifizierungsdaten
+mit einem User Objekt übereinstimmen.
+
+\lstinputlisting[caption=Einfache Implementierung des User Service Interface
+(SimpleUserService.java)] {sources/appendix/SimpleUserService.java}
+
+Nun muss eine Spring Context Definition erstellt werden, die die
+SimpleUserService Implementierung instanziiert und dieser eine Reihe von User
+Objekten übergibt.
+
+\lstset{language=XML}
+\lstinputlisting[caption=Spring Context Definition für den SimpleUSerService
+(applicationContext.xml)] {sources/appendix/applicationContext.xml}
+
+Wird der dieser Context nun in einem Hauptprogramm in den Dependency Injection
+Container gelesen können die dort definierten Objekte anhand der Interfaces
+benutzt werden, die diese implementieren. Das folgende Listing
+\ref{lst:bootstrap} zeigt die Verwendung in einem einfachen Java
+Kommandozeilenprogramm.
+
+\lstset{language=Java}
+\lstinputlisting[caption=Verwendung des Dependency Injection Containers
+(Bootstrap.java), label=lst:bootstrap] {sources/appendix/Bootstrap.java}
+
+\pagebreak
+\section{XML-RPC}
+Das in Abschnit \ref{app:spring} erstellte UserService Interface wird hier auch
+verwendet um einen Aufruf über das XML-RPC Protokoll zu illustrieren. Ein
+Methodenaufruf auf dieses Interface hat die folgende Form:
+
+\lstset{language=XML}
+\lstinputlisting[caption=XML-RPC Methodenaufruf]{sources/appendix/xmlrpcreq.txt}
+
+Wurde der richtige Benutzer gefunden wird ein Struct Objekt, das den
+entsprechenden Benutzer repräsentiert, zurückgeliefert.
+
+\lstinputlisting[caption=Antwort auf einen
+XML-RPC Methodenaufruf]{sources/appendix/xmlrpcresp.txt}
+
+Wurde der entsprechende Benutzer nicht gefunden wird ein Fehlerobjekt in der
+folgenden Form übertragen.
+
+\lstinputlisting[caption=XML-RPC Antwort bei
+einem Fehler]{sources/appendix/xmlrpcfault.txt}

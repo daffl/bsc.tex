@@ -1,0 +1,3 @@
+<bean name="userService" class="org.feathry.service.domain.DynamicGormService">
+	<constructor-arg value="org.feathry.example.UserService" />
+</bean>
