@@ -1,0 +1,3 @@
+Domain Model Example:
+
+[User|+Firstname;+Lastname;+Password|+Login();+Logout()]->*[Address|+Street;+City|]
